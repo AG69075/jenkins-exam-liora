@@ -1,0 +1,6 @@
+fullnameOverride: nginx
+image:
+  repository: ag69075/nginx-gateway
+containerPort: 8080
+probes: {enabled: false}
+service: {type: NodePort, port: 8080, targetPort: 8080}
