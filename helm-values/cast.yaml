@@ -2,7 +2,13 @@ fullnameOverride: cast-service
 image:
   repository: ag69075/cast-service
 containerPort: 8000
-probes: {enabled: false}
-service: {type: ClusterIP, port: 8000, targetPort: 8000, nodePort: null}
+probes:
+  enabled: false
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+  nodePort: null
 env:
-  - {name: DATABASE_URI, value: "postgresql://cast_db_username:cast_db_password@cast-db/cast_db_dev"}
+  - name: DATABASE_URI
+    value: postgresql://cast_db_username:cast_db_password@cast-db/cast_db_dev
