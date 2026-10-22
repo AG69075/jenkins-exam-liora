@@ -14,10 +14,9 @@ pipeline {
         }
         stage('Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub',
-                        usernameVariable: 'DU', passwordVariable: 'DP')]) {
+                withCredentials([string(credentialsId: 'DOCKER_HUB_PASS', variable: 'DP')]) {
                     sh '''
-                        echo "$DP" | docker login -u "$DU" --password-stdin
+                        echo "$DP" | docker login -u "$DOCKER_ID" --password-stdin
                         docker push $DOCKER_ID/movie-service:$DOCKER_TAG
                         docker push $DOCKER_ID/cast-service:$DOCKER_TAG
                         docker push $DOCKER_ID/nginx-gateway:$DOCKER_TAG
